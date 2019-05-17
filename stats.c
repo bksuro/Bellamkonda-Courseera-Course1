@@ -58,7 +58,7 @@ void print_statistics(unsigned char array[], int arraySize) {
 	min = find_minimum(array, arraySize);
 	
 	printf("Maximum of the numbers: %d\n", max);
-	printf("Minimum of the numbers: %d\n", max);
+	printf("Minimum of the numbers: %d\n", min);
 	printf("Mean of the numbers: %.2f\n", mean);
 	printf("Median of the numbers: %.2f\n", median);
 }
@@ -74,22 +74,76 @@ void print_array(unsigned char array[], int arraySize) {
 }
 
 double find_median(unsigned char array[], int arraySize) {
-	return 1;
+	unsigned char *sortedArray;
+	double retMedian;
+	unsigned char medianIdx;
+	
+	sortedArray = sort_array(array, arraySize);
+	
+	if (arraySize%2 == 0) {
+		medianIdx = arraySize/2;
+		retMedian = (sortedArray[medianIdx - 1] + sortedArray[medianIdx])/2.0;
+	} else {
+		medianIdx = (arraySize+1)/2;
+		retMedian = sortedArray[medianIdx];
+	}
+	return retMedian;
 }
 
 double find_mean(unsigned char array[], int arraySize) {
-	return 1;
+	double retMean;
+	double totalSum;
+	
+	totalSum = 0;
+	for ( int idx = 0; idx < arraySize; idx++) {
+		totalSum += array[idx];
+	}
+	
+	//printf("Sum: %f\n",totalSum);
+	retMean = totalSum/arraySize;
+	return retMean;
 }
 
 unsigned char find_minimum(unsigned char array[], int arraySize) {
-	return 1;
+	unsigned char retMin;
+	
+	retMin = array[0];
+	for (int idx = 0; idx < arraySize; idx++) {
+		if (retMin > array[idx]) {
+			retMin = array[idx];
+		}
+	}
+	return retMin;
 }
 
 unsigned char find_maximum(unsigned char array[], int arraySize) {
-	return 1;
+	unsigned char retMax;
+	
+	retMax = array[0];
+	for (int idx = 0; idx < arraySize; idx++) {
+		if (retMax < array[idx]) {
+			retMax = array[idx];
+		}
+	}
+	return retMax;
 }
 
 unsigned char *sort_array(unsigned char array[], int arraySize) {
-	return array;
+	unsigned char *retSortArray;
+	int temp;
+	
+	retSortArray = array;
+	
+	for (int idxI = 0; idxI < arraySize; idxI++) {
+		for (int idxJ = 0; idxJ < arraySize; idxJ++) {
+			temp = 0;
+			if (retSortArray[idxI] > retSortArray[idxJ]) {
+				temp = retSortArray[idxI];
+				retSortArray[idxI] = retSortArray[idxJ];
+				retSortArray[idxJ] = temp;
+			}
+		}
+	}
+	return retSortArray;
 }
 
