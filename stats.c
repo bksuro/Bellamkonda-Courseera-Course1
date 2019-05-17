@@ -7,17 +7,15 @@
  * software. Subbarao Bellamkonda is not liable for any misuse of the material.
  *
  *****************************************************************************/
+
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.c
+ * @brief Main file for dev_c1m1 assignment
  *
- * <Add Extended Description Here>
- *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Subbarao Bellamkonda
+ * @date May 16 2019
  *
  */
-
 
 
 #include <stdio.h>
@@ -39,4 +37,31 @@ void main() {
 
 }
 
-/* Add other Implementation File Code Here */
+void print_statistics(int * arrayPtr, int arraySize) {
+	
+}
+
+void print_array(int * arrayPtr, int arraySize) {
+	
+}
+
+int find_median(int * arrayPtr, int arraySize) {
+	return 1;
+}
+
+int find_mean(int * arrayPtr, int arraySize) {
+	return 1;
+}
+
+int find_minimum(int * arrayPtr, int arraySize) {
+	return 1;
+}
+
+int find_maximum(int * arrayPtr, int arraySize) {
+	return 1;
+}
+
+void sort_array(int * arrayPtr, int arraySize) {
+	
+}
+
