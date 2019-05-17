@@ -14,6 +14,16 @@
  *
  * @author Subbarao Bellamkonda
  * @date May 16 2019
+ * 
+ * Following functions are implemented in this file:
+ *     main
+ *     print_statistics
+ *     print_array
+ *     sort_array
+ *     find_mean
+ *     find_median
+ *     find_maximum
+ *     find_minimum
  *
  */
 
@@ -38,14 +48,17 @@ void main() {
   /* Statistics and Printing Functions Go Here */
   printf("Raw Data \n\n");
   print_array(test, SIZE);
+  
   sortedArray = sort_array(test, SIZE);
   printf("\n\nSorted data \n\n");
   print_array(sortedArray, SIZE);
+  
   printf("\n\nStatistics:::\n\n");
   print_statistics(test, SIZE);
 
 }
 
+/***** This function prints statistics *****/
 void print_statistics(unsigned char array[], int arraySize) {
 	double mean; 
 	double median;
@@ -63,6 +76,7 @@ void print_statistics(unsigned char array[], int arraySize) {
 	printf("Median of the numbers: %.2f\n", median);
 }
 
+/***** This function prints the numbers in the array *****/
 void print_array(unsigned char array[], int arraySize) {
 	for(int idx=0; idx < arraySize; idx++) {
 		printf("%d ",array[idx]);
@@ -73,6 +87,7 @@ void print_array(unsigned char array[], int arraySize) {
 	printf("\n");
 }
 
+/***** This function finds the median from the array *****/
 double find_median(unsigned char array[], int arraySize) {
 	unsigned char *sortedArray;
 	double retMedian;
@@ -90,6 +105,7 @@ double find_median(unsigned char array[], int arraySize) {
 	return retMedian;
 }
 
+/***** This function finds the mean from the array *****/
 double find_mean(unsigned char array[], int arraySize) {
 	double retMean;
 	double totalSum;
@@ -99,11 +115,11 @@ double find_mean(unsigned char array[], int arraySize) {
 		totalSum += array[idx];
 	}
 	
-	//printf("Sum: %f\n",totalSum);
 	retMean = totalSum/arraySize;
 	return retMean;
 }
 
+/***** This function finds the minimum number from the array *****/
 unsigned char find_minimum(unsigned char array[], int arraySize) {
 	unsigned char retMin;
 	
@@ -116,6 +132,7 @@ unsigned char find_minimum(unsigned char array[], int arraySize) {
 	return retMin;
 }
 
+/***** This function finds the maximum number from the array *****/
 unsigned char find_maximum(unsigned char array[], int arraySize) {
 	unsigned char retMax;
 	
@@ -128,6 +145,7 @@ unsigned char find_maximum(unsigned char array[], int arraySize) {
 	return retMax;
 }
 
+/***** This function sorts the array in descending order *****/
 unsigned char *sort_array(unsigned char array[], int arraySize) {
 	unsigned char *retSortArray;
 	int temp;
@@ -137,7 +155,8 @@ unsigned char *sort_array(unsigned char array[], int arraySize) {
 	for (int idxI = 0; idxI < arraySize; idxI++) {
 		for (int idxJ = 0; idxJ < arraySize; idxJ++) {
 			temp = 0;
-			if (retSortArray[idxI] > retSortArray[idxJ]) {
+			//sorting in descending order for ascending change the > to <
+			if (retSortArray[idxI] > retSortArray[idxJ]) {  
 				temp = retSortArray[idxI];
 				retSortArray[idxI] = retSortArray[idxJ];
 				retSortArray[idxJ] = temp;

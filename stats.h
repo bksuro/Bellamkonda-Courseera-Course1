@@ -29,7 +29,7 @@
  * median of the numbers on to the screen. 
  *
  * @param array[]  Array of numbers
- * @param arraySize 32-bit integer
+ * @param arraySize 32-bit integer holding the size of the array
  *
  * @return void
  */
@@ -43,7 +43,7 @@ void print_statistics(unsigned char array[], int arraySize);
  * array. Then the function will print out the numbers on to the screen. 
  *
  * @param array[]  Array of numbers
- * @param arraySize 32-bit integer
+ * @param arraySize 32-bit integer  holding the size of the array
  *
  * @return void
  */
@@ -57,7 +57,7 @@ void print_array(unsigned char array[], int arraySize);
  * array. Then the function will return the median of the numbers. 
  *
  * @param array[]  Array of numbers
- * @param arraySize 32-bit integer
+ * @param arraySize 32-bit integer holding the size of the array
  *
  * @return The median of the numbers from the array
  */
@@ -71,7 +71,7 @@ double find_median(unsigned char array[], int arraySize);
  * array. Then the function will return the mean of the numbers. 
  *
  * @param array[]  Array of numbers
- * @param arraySize 32-bit integer
+ * @param arraySize 32-bit integer holding the size of the array
  *
  * @return The mean of the numbers from the array
  */
@@ -85,7 +85,7 @@ double find_mean(unsigned char array[], int arraySize);
  * array. Then the function will return the minimum of the numbers. 
  *
  * @param array[]  Array of numbers
- * @param arraySize 32-bit integer
+ * @param arraySize 32-bit integer holding the size of the array
  *
  * @return The minimum number from the array
  */
@@ -99,7 +99,7 @@ unsigned char find_minimum(unsigned char array[], int arraySize);
  * array. Then the function will return the maximum of the numbers. 
  *
  * @param array[]  Array of numbers
- * @param arraySize 32-bit integer
+ * @param arraySize 32-bit integer holding the size of the array
  *
  * @return The maximum number from the array
  */
@@ -113,7 +113,7 @@ unsigned char find_maximum(unsigned char array[], int arraySize);
  * element (n-1) should be the smallest value.)
  *
  * @param array[]  Array of numbers
- * @param arraySize 32-bit integer
+ * @param arraySize 32-bit integer holding the size of the array
  *
  * @return pointer to the sorted array
  */
