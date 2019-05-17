@@ -33,35 +33,63 @@ void main() {
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
   /* Other Variable Declarations Go Here */
+  unsigned char *sortedArray;
+  
   /* Statistics and Printing Functions Go Here */
+  printf("Raw Data \n\n");
+  print_array(test, SIZE);
+  sortedArray = sort_array(test, SIZE);
+  printf("\n\nSorted data \n\n");
+  print_array(sortedArray, SIZE);
+  printf("\n\nStatistics:::\n\n");
+  print_statistics(test, SIZE);
 
 }
 
-void print_statistics(int * arrayPtr, int arraySize) {
+void print_statistics(unsigned char array[], int arraySize) {
+	double mean; 
+	double median;
+	unsigned char max;
+	unsigned char min;
 	
-}
-
-void print_array(int * arrayPtr, int arraySize) {
+	mean = find_mean(array, arraySize);
+	median = find_median(array, arraySize);
+	max = find_maximum(array, arraySize);
+	min = find_minimum(array, arraySize);
 	
+	printf("Maximum of the numbers: %d\n", max);
+	printf("Minimum of the numbers: %d\n", max);
+	printf("Mean of the numbers: %.2f\n", mean);
+	printf("Median of the numbers: %.2f\n", median);
 }
 
-int find_median(int * arrayPtr, int arraySize) {
+void print_array(unsigned char array[], int arraySize) {
+	for(int idx=0; idx < arraySize; idx++) {
+		printf("%d ",array[idx]);
+		if (((idx+1)%8) == 0) {
+			printf("\n");
+		}
+	}
+	printf("\n");
+}
+
+double find_median(unsigned char array[], int arraySize) {
 	return 1;
 }
 
-int find_mean(int * arrayPtr, int arraySize) {
+double find_mean(unsigned char array[], int arraySize) {
 	return 1;
 }
 
-int find_minimum(int * arrayPtr, int arraySize) {
+unsigned char find_minimum(unsigned char array[], int arraySize) {
 	return 1;
 }
 
-int find_maximum(int * arrayPtr, int arraySize) {
+unsigned char find_maximum(unsigned char array[], int arraySize) {
 	return 1;
 }
 
-void sort_array(int * arrayPtr, int arraySize) {
-	
+unsigned char *sort_array(unsigned char array[], int arraySize) {
+	return array;
 }
 

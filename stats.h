@@ -28,12 +28,12 @@
  * array. Then the function will print out the minimum, maximum, mean, and 
  * median of the numbers on to the screen. 
  *
- * @param arrayPtr pointer to the array of numbers
+ * @param array[]  Array of numbers
  * @param arraySize 32-bit integer
  *
  * @return void
  */
-void print_statistics(int * arrayPtr, int arraySize);
+void print_statistics(unsigned char array[], int arraySize);
 
 /**
  * @brief Prints the array of numbers tothe screen
@@ -42,12 +42,12 @@ void print_statistics(int * arrayPtr, int arraySize);
  * array of integers, and an integer that tells the function the size of the 
  * array. Then the function will print out the numbers on to the screen. 
  *
- * @param arrayPtr pointer to the array of numbers
+ * @param array[]  Array of numbers
  * @param arraySize 32-bit integer
  *
  * @return void
  */
-void print_array(int * arrayPtr, int arraySize);
+void print_array(unsigned char array[], int arraySize);
 
 /**
  * @brief Finds the median of the numbers in the array of numbers.
@@ -56,12 +56,12 @@ void print_array(int * arrayPtr, int arraySize);
  * array of integers, and an integer that tells the function the size of the 
  * array. Then the function will return the median of the numbers. 
  *
- * @param arrayPtr pointer to the array of numbers
+ * @param array[]  Array of numbers
  * @param arraySize 32-bit integer
  *
  * @return The median of the numbers from the array
  */
-int find_median(int * arrayPtr, int arraySize);
+double find_median(unsigned char array[], int arraySize);
 
 /**
  * @brief Finds the mean of the numbers in the array of numbers.
@@ -70,12 +70,12 @@ int find_median(int * arrayPtr, int arraySize);
  * array of integers, and an integer that tells the function the size of the 
  * array. Then the function will return the mean of the numbers. 
  *
- * @param arrayPtr pointer to the array of numbers
+ * @param array[]  Array of numbers
  * @param arraySize 32-bit integer
  *
  * @return The mean of the numbers from the array
  */
-int find_mean(int * arrayPtr, int arraySize);
+double find_mean(unsigned char array[], int arraySize);
 
 /**
  * @brief Finds the minimum number in the array of numbers.
@@ -84,12 +84,12 @@ int find_mean(int * arrayPtr, int arraySize);
  * array of integers, and an integer that tells the function the size of the 
  * array. Then the function will return the minimum of the numbers. 
  *
- * @param arrayPtr pointer to the array of numbers
+ * @param array[]  Array of numbers
  * @param arraySize 32-bit integer
  *
  * @return The minimum number from the array
  */
-int find_minimum(int * arrayPtr, int arraySize);
+unsigned char find_minimum(unsigned char array[], int arraySize);
 
 /**
  * @brief Finds the maximum number in the array of numbers.
@@ -98,12 +98,12 @@ int find_minimum(int * arrayPtr, int arraySize);
  * array of integers, and an integer that tells the function the size of the 
  * array. Then the function will return the maximum of the numbers. 
  *
- * @param arrayPtr pointer to the array of numbers
+ * @param array[]  Array of numbers
  * @param arraySize 32-bit integer
  *
  * @return The maximum number from the array
  */
-int find_maximum(int * arrayPtr, int arraySize);
+unsigned char find_maximum(unsigned char array[], int arraySize);
 
 /**
  * @brief Sorts the numbers in the array
@@ -112,11 +112,11 @@ int find_maximum(int * arrayPtr, int arraySize);
  * smallest. (The zeroth Element should be the largest value, and the last 
  * element (n-1) should be the smallest value.)
  *
- * @param arrayPtr pointer to the array of numbers
+ * @param array[]  Array of numbers
  * @param arraySize 32-bit integer
  *
- * @return void
+ * @return pointer to the sorted array
  */
-void sort_array(int * arrayPtr, int arraySize);
+unsigned char *sort_array(unsigned char array[], int arraySize);
 
 #endif /* __STATS_H__ */
