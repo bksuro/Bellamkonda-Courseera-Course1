@@ -10,15 +10,25 @@
 #*****************************************************************************
 
 #------------------------------------------------------------------------------
-# <Put a Description Here>
+# Simple makefile for the platforms MSP432 and HOSt.
 #
 # Use: make [TARGET] [PLATFORM-OVERRIDES]
 #
 # Build Targets:
-#      <Put a description of the supported targets here>
+#      %.i         - generates the preprocessed output of all c-program 
+#                      implementation files
+#      %.asm       - generates assembly output of c-program implementation files 
+#                      and the final output executable
+#      %.o         - generates the object file for all c-source files, but doesn't 
+#                      link, by specifiying the object file
+#      compile-all - compiles all object files, but doesn't link
+#      build       - compiles all object files and links into a final executable
+#      clean       - will remove all compiled objects, preprocessed outputs, assembly 
+#                      outputs, executable files, and build output files
 #
 # Platform Overrides:
-#      <Put a description of the supported Overrides here
+#      PLATFORM=MSP432 - target embedded system arm cortex m4 architecture
+#      PLATFORM=HOST   - host embedded system
 #
 #------------------------------------------------------------------------------
 include sources.mk
@@ -27,15 +37,53 @@ include sources.mk
 PLATFORM = 
 
 # Architectures Specific Flags
-LINKER_FILE = 
-CPU = 
-ARCH = 
-SPECS = 
+ifeq ($(PLATFORM), MSP432)
+  LINKER_FILE = ../msp432p401r.lds
+  CPU = cortex-m4
+  ARCH = armv7e-m
+  SPECS = nosys.specs
+endif 
 
 # Compiler Flags and Defines
-CC = 
-LD = 
-LDFLAGS = 
-CFLAGS = 
-CPPFLAGs = 
+TARGET = c1m2
+ifeq ($(PLATFORM), MSP432)
+  CC = arm-none-eabi-gcc
+  LD = arm-none-eabi-ld
+  LDFLAGS = -Wl,-Map=$(TARGET).map $(INCLUDES) -T $(LINKER_FILE) 
+  CFLAGS = -Wall -Werror -g -O0 -std=c99 -mcpu=$(CPU) -mthumb -march=$(ARCH) \
+             -mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=$(SPECS)
+  CPPFLAGS = -D$(PLATFORM) -MD
+endif 
+ifeq ($(PLATFORM), HOST)
+  CC = gcc
+  LD = 
+  LDFLAGS = -Wl,-Map=$(TARGET).map $(INCLUDES)
+  CFLAGS = -Wall -Werror -g -O0 -std=c99
+  CPPFLAGS = -D$(PLATFORM) -MD
+endif 
 
+#OBJS = $(SRCS:.c=.o)
+
+%.o : %.c
+	$(CC) $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+%.i : %.c
+	$(CC) $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) -E $< -o $@
+
+%.asm : %.c
+	$(CC) $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+	objdump -S $@    
+    
+.PHONY : build    
+build : $(TARGET).out
+$(TARGET).out : $(SRCS)    
+	$(CC) $(SRCS) $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) -o $(TARGET).out
+	size $(TARGET).out
+
+.PHONY : compile-all
+compile-all : $(SRCS)    
+	$(CC) $(SRCS) $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) -c
+
+.PHONY : clean
+clean :     
+	rm -f *.o *.asm *.i *.d *.map *.out

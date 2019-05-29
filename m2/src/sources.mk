@@ -10,8 +10,33 @@
 #*****************************************************************************
 
 # Add your Source files to this variable
-SOURCES =
+# Platform specific sources
+# PLATFORM=HOST
+ifeq ($(PLATFORM), HOST)
+  SRCS =           \
+          ./main.c    \
+          ./memory.c
+endif
+# PLATFORM=MSP432
+ifeq ($(PLATFORM), MSP432)
+  SRCS =                               \
+          ./main.c                        \
+          ./memory.c                      \
+          ./interrupts_msp432p401r_gcc.c  \
+          ./startup_msp432p401r_gcc.c     \
+          ./system_msp432p401r.c
+endif
 
 # Add your include paths to this variable
-INCLUDES = 
-
+# Platform specific includes
+ifeq ($(PLATFORM), MSP432)
+  INCLUDES =                      \
+           -I../include/msp432/   \
+           -I../include/common/   \
+           -I../include/CMSIS/
+endif 
+ifeq ($(PLATFORM), HOST)
+  INCLUDES =                      \
+           -I../include/common/   
+ endif 
+#
