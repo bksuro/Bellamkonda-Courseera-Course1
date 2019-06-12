@@ -29,9 +29,6 @@
 uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 	
 	uint8_t length = 0;
-	uint8_t negative = 0;
-	int temp;
-	int idx = 0;
 	
 	// bases 2 to 16
 	if ( (base < 2) || (base > 16) ) {
@@ -44,37 +41,19 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 	}
 	
 	if ( (base == 10) && (data < 0) ) {
-		negative = 1;
 		data = -data;
-		temp = data;
-	}
-	else {
-		temp = data;
+		*ptr++ = '-';
 	}
 	
-	while (temp) {
-		int rem = temp%base;
-		
-		if (rem >= 10) {
-			ptr[idx++] = 65 + (rem - 10);
-		}
-		else {
-			ptr[idx++] = 48 + rem;
-		}
-		
-		temp = temp / base;
+	while ( (data/base) || (data%base)) {
+		ptr[length++] = data%base + 0x30;
+		data/=base;
 	}
 	
-	if (idx == 0)
-		ptr[idx++] = '0';
+	ptr[length] = 0;
 	
-	if ( (data < 0) && (base == 10) ) {
-		ptr[idx++] = '-';
-	}
-	
-	ptr[idx] = '\0';     \\ null terminator
-	
-	return my_reverse(ptr, (idx - 1));
+	my_reverse(ptr, length);
+	return length;
 }
 
 int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
@@ -94,14 +73,14 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
 	
 	if (*ptr == '-' ) {
 		negative = 1;
-		ptr+;
+		ptr++;
 	}
 	
 	for(int idx = 0; idx < digits; idx++) {
-		rtn = rtn*base + (*(ptr + i) - 0x30);
+		rtn = rtn*base + (*(ptr + idx) - 0x30);
 	}
 	
-	if (negative) {
+	if (negative == 1) {
 		return -rtn;
 	}
 	else {

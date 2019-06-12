@@ -72,14 +72,14 @@ uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length) {
 }
 
 uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value) {
-	for ( int idx = 0; idx < length, idx++ ) {
+	for ( int idx = 0; idx < length; idx++ ) {
 		src[idx] = value;
 	}
 	return src;
 }
 
 uint8_t * my_memzero(uint8_t * src, size_t length) {
-	return my_memset(src, length, 0);
+	return (uint8_t *)my_memset(src, length, 0);
 }
 
 uint8_t * my_reverse(uint8_t * src, size_t length) {
@@ -87,8 +87,8 @@ uint8_t * my_reverse(uint8_t * src, size_t length) {
 	uint8_t temp;
 	for ( int idx = 0; idx < middle; idx++ ) {
 		temp = src[idx];
-		src[idx] = src[length - 1 - i];
-		src[length - 1 - i] = temp;
+		src[idx] = src[length - 1 - idx];
+		src[length - 1 - idx] = temp;
 	}
 	return src;
 }
@@ -98,6 +98,12 @@ int32_t * reserve_words(size_t length) {
 	return rtn;
 }
 
+/*
 void free_words(int32_t * src) {
+	free(src);
+}
+*/
+
+void free_words(uint32_t * src) {
 	free(src);
 }

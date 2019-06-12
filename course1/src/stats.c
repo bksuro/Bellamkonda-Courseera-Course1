@@ -35,7 +35,8 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
-void main() {
+/*
+int main() {
 
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
@@ -43,10 +44,10 @@ void main() {
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
-  /* Other Variable Declarations Go Here */
+  // Other Variable Declarations Go Here 
   unsigned char *sortedArray;
   
-  /* Statistics and Printing Functions Go Here */
+  // Statistics and Printing Functions Go Here 
   printf("Raw Data \n\n");
   print_array(test, SIZE);
   
@@ -56,8 +57,11 @@ void main() {
   
   printf("\n\nStatistics:::\n\n");
   print_statistics(test, SIZE);
+  
+  return 0;
 
 }
+*/
 
 /***** This function prints statistics *****/
 void print_statistics(unsigned char array[], int arraySize) {

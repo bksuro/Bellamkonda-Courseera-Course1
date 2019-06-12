@@ -35,6 +35,8 @@ include sources.mk
 
 # Platform Overrides
 PLATFORM = 
+COURSE = COURSE1
+VERBOSE = VERBOSE
 
 # Architectures Specific Flags
 ifeq ($(PLATFORM), MSP432)
@@ -52,14 +54,14 @@ ifeq ($(PLATFORM), MSP432)
   LDFLAGS = -Wl,-Map=$(TARGET).map $(INCLUDES) -T $(LINKER_FILE) 
   CFLAGS = -Wall -Werror -g -O0 -std=c99 -mcpu=$(CPU) -mthumb -march=$(ARCH) \
              -mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=$(SPECS)
-  CPPFLAGS = -D$(PLATFORM) -MD
+  CPPFLAGS = -D$(PLATFORM) -D$(VERBOSE) -D$(COURSE) -MD
 endif 
 ifeq ($(PLATFORM), HOST)
   CC = gcc
   LD = 
   LDFLAGS = -Wl,-Map=$(TARGET).map $(INCLUDES)
   CFLAGS = -Wall -Werror -g -O0 -std=c99
-  CPPFLAGS = -D$(PLATFORM) -MD
+  CPPFLAGS = -D$(PLATFORM) -D$(VERBOSE) -D$(COURSE) -MD
 endif 
 
 #OBJS = $(SRCS:.c=.o)
