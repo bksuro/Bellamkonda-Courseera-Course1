@@ -30,6 +30,7 @@
 
 #include <stdio.h>
 #include "stats.h"
+#include "platform.h"
 
 /* Size of the Data Set */
 #define SIZE (40)
@@ -78,13 +79,15 @@ void print_statistics(unsigned char array[], int arraySize) {
 
 /***** This function prints the numbers in the array *****/
 void print_array(unsigned char array[], int arraySize) {
+#ifdef VERBOSE
 	for(int idx=0; idx < arraySize; idx++) {
-		printf("%d ",array[idx]);
+		PRINTF("%d ",array[idx]);
 		if (((idx+1)%8) == 0) {
-			printf("\n");
+			PRINTF("\n");
 		}
 	}
-	printf("\n");
+	PRINTF("\n");
+#endif
 }
 
 /***** This function finds the median from the array *****/
