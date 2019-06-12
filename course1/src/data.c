@@ -20,12 +20,61 @@
  *
  */
 #include "data.h"
+#include "memory.h"
 
 /***********************************************************
  Function Definitions
 ***********************************************************/
 
 uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
+	
+	uint8_t length = 0;
+	bool negative = false;
+	int temp;
+	int idx = 0;
+	
+	// bases 2 to 16
+	if ( (base < 2) || (base > 16) ) {
+		return length;
+	}
+	
+	//null ptr
+	if ( ptr == NULL ) {
+		return length;
+	}
+	
+	if ( (base == 10) && (data < 0) ) {
+		negative = true;
+		data = -data;
+		temp = data;
+	}
+	else {
+		temp = data;
+	}
+	
+	while (temp) {
+		int rem = temp%base;
+		
+		if (rem >= 10) {
+			ptr[idx++] = 65 + (rem - 10);
+		}
+		else {
+			ptr[idx++] = 48 + rem;
+		}
+		
+		temp = temp / base;
+	}
+	
+	if (idx == 0)
+		ptr[idx++] = '0';
+	
+	if ( (data < 0) && (base == 10) ) {
+		ptr[idx++] = '-';
+	}
+	
+	ptr[idx] = '\0';     \\ null terminator
+	
+	return my_reverse(ptr, (idx - 1));
 }
 
 int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
